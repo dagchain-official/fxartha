@@ -1,4 +1,4 @@
-import { Copy, Users, ArrowRight, Activity } from 'lucide-react'
+import { Activity, Users } from 'lucide-react'
 import ScrollReveal from '@/landing/components/animations/ScrollReveal'
 import CtFaqList from './CtFaqList'
 
@@ -29,114 +29,67 @@ export default function CtWhat() {
           </ScrollReveal>
         </div>
 
-        {/* ── Clean dark cards: explainer + illustration ─────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mt-10 md:mt-14 items-stretch">
-          {/* Explainer — dark card with small gold icon badge */}
-          <ScrollReveal variant="fadeUp" className="lg:col-span-7">
-            <div className="fx-tile h-full p-7 md:p-8 flex flex-col">
-              <div className="feature-icon mb-5" style={{ width: 48, height: 48 }}>
-                <Copy size={20} />
-              </div>
-              <span className="fx-accent-bar mb-4" />
-              <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--fx-text-2)' }}>
-                Copy trading allows you to automatically replicate the trades of experienced
-                traders (<span className="font-bold text-white">Master Traders</span>).
-                When a Master Trader executes a trade, the same trade is mirrored in your account
-                based on your allocation.
+        {/* ── Editorial explanation: prose + one quiet relationship diagram ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mt-12 md:mt-16 items-center">
+          <ScrollReveal variant="fadeUp">
+            <div>
+              <p className="text-lg md:text-xl leading-relaxed text-white">
+                Copy trading automatically replicates the trades of experienced traders — the{' '}
+                <span className="font-semibold" style={{ color: 'var(--fx-gold-light)' }}>
+                  Master Traders
+                </span>
+                . When one opens or closes a position, the same move mirrors into your account,
+                scaled to the amount you allocate.
               </p>
-
-              {/* Mini-visual: rising gold line chart (decorative) */}
-              <div
-                className="mt-6 rounded-xl p-4"
-                style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--fx-line-strong)' }}
-                aria-hidden="true"
-              >
-                <svg viewBox="0 0 240 60" className="w-full h-14" preserveAspectRatio="none">
-                  <polyline
-                    points="0,52 34,44 68,48 102,32 136,36 170,20 204,24 240,8"
-                    fill="none"
-                    stroke="var(--fx-gold-light)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+              <p className="mt-5 text-base md:text-lg leading-relaxed" style={{ color: 'var(--fx-text-3)' }}>
+                You don't build the strategy — you choose whose track record to follow, and at what
+                size. Nothing moves without your allocation behind it.
+              </p>
             </div>
           </ScrollReveal>
 
-          {/* Illustration — trader → mirror → follower */}
-          <ScrollReveal variant="fadeUp" delay={0.1} className="lg:col-span-5">
-            <div className="fx-tile h-full p-7 md:p-8 flex flex-col">
-              <div className="grid grid-cols-7 items-center gap-2">
-                {/* Master */}
-                <div className="col-span-3">
-                  <div
-                    className="rounded-xl p-4 text-center"
-                    style={{
-                      background: 'var(--fx-bg-elev)',
-                      border: '1px solid rgba(221,169,46,0.35)',
-                    }}
-                  >
-                    <div className="feature-icon mx-auto mb-2" style={{ width: 36, height: 36 }}>
-                      <Activity size={16} />
-                    </div>
-                    <div className="text-[10px] uppercase tracking-wider mb-0.5" style={{ color: 'var(--fx-gold-light)' }}>
-                      Master Trader
-                    </div>
-                    <div className="text-xs font-bold text-white">Executes trade</div>
-                  </div>
+          <ScrollReveal variant="fadeUp" delay={0.1}>
+            <div className="fx-tile p-7 md:p-8">
+              {/* Master → You, as a quiet vertical relationship (no mock UI) */}
+              <div className="flex items-center gap-4">
+                <div className="feature-icon shrink-0" style={{ width: 46, height: 46 }}>
+                  <Activity size={20} />
                 </div>
-                <div className="col-span-1 flex justify-center" style={{ color: 'var(--fx-gold-light)' }}>
-                  <ArrowRight size={20} />
-                </div>
-                {/* Followers */}
-                <div className="col-span-3">
-                  <div
-                    className="rounded-xl p-4 text-center"
-                    style={{
-                      background: 'var(--fx-bg-elev)',
-                      border: '1px solid rgba(221,169,46,0.30)',
-                    }}
-                  >
-                    <div className="feature-icon mx-auto mb-2" style={{ width: 36, height: 36 }}>
-                      <Users size={16} />
-                    </div>
-                    <div className="text-[10px] uppercase tracking-wider mb-0.5" style={{ color: 'var(--fx-gold-light)' }}>
-                      Followers
-                    </div>
-                    <div className="text-xs font-bold text-white">Mirrored auto</div>
+                <div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: 'var(--fx-text-3)' }}>
+                    Master Trader
                   </div>
+                  <div className="text-sm md:text-base font-semibold text-white">Opens a position</div>
+                </div>
+              </div>
+
+              <div className="ml-[22px] my-2.5 h-8 border-l" style={{ borderColor: 'var(--fx-line-strong)' }} />
+
+              <div className="flex items-center gap-4">
+                <div className="feature-icon shrink-0" style={{ width: 46, height: 46 }}>
+                  <Users size={20} />
+                </div>
+                <div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: 'var(--fx-text-3)' }}>
+                    Your Account
+                  </div>
+                  <div className="text-sm md:text-base font-semibold text-white">Mirrors it automatically</div>
                 </div>
               </div>
 
               <div
-                className="mt-5 rounded-xl p-4 text-center"
-                style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid var(--fx-line-strong)',
-                }}
+                className="mt-6 pt-5 flex items-center justify-between"
+                style={{ borderTop: '1px solid var(--fx-line)' }}
               >
-                <div className="text-[11px] uppercase tracking-wider" style={{ color: 'var(--fx-text-3)' }}>
-                  Your Allocation
-                </div>
-                <div className="text-lg font-extrabold gradient-text">$500 · 1× ratio</div>
+                <span className="text-sm" style={{ color: 'var(--fx-text-3)' }}>Your allocation</span>
+                <span className="text-sm font-semibold text-white">$500 · 1× ratio</span>
               </div>
             </div>
           </ScrollReveal>
         </div>
 
-        <ScrollReveal variant="fadeUp" delay={0.15}>
-          <p
-            className="mt-8 md:mt-10 text-center text-base md:text-lg italic max-w-2xl mx-auto fx-quote"
-            style={{ color: 'var(--fx-text-2)' }}
-          >
-            &ldquo;Follow real performance — not predictions.&rdquo;
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal variant="fadeUp" delay={0.25}>
-          <div className="mt-8 md:mt-10 max-w-3xl mx-auto">
+        <ScrollReveal variant="fadeUp" delay={0.2}>
+          <div className="mt-12 md:mt-16 max-w-3xl mx-auto">
             <CtFaqList items={faq} />
           </div>
         </ScrollReveal>

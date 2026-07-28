@@ -1,14 +1,7 @@
 'use client'
 
 import { Link } from 'react-router-dom'
-import { ArrowRight, ShieldCheck, CalendarDays, BadgePercent, Zap, Smile } from 'lucide-react'
-
-const features = [
-  { icon: CalendarDays,  title: 'Flexible Plans',     sub: 'Daily, Weekly, Monthly' },
-  { icon: BadgePercent,  title: 'Smart Protection',   sub: 'Up to 50% coverage levels' },
-  { icon: Zap,           title: 'Automatic Coverage', sub: 'Applied to eligible losses' },
-  { icon: Smile,         title: 'Peace of Mind',      sub: 'Focus on trading, we manage the risk' },
-]
+import { ArrowRight, ShieldCheck } from 'lucide-react'
 
 export default function InHero() {
   return (
@@ -34,7 +27,7 @@ export default function InHero() {
       <div className="fx-container relative z-10 w-full pt-28 md:pt-32 lg:pt-36 pb-10 md:pb-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* LEFT */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-7">
             <div className="fx-fade-up mb-5">
               <span className="badge">
                 <span
@@ -70,75 +63,6 @@ export default function InHero() {
                 <ShieldCheck size={16} />
                 Activate Protection
               </Link>
-            </div>
-          </div>
-
-          {/* RIGHT — Shield + feature badges */}
-          <div className="lg:col-span-6 relative">
-            <div className="relative h-full min-h-[360px] flex items-center justify-center">
-              {/* Glow halo */}
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    'radial-gradient(40% 50% at 50% 50%, rgba(221,169,46,0.35) 0%, rgba(221,169,46,0) 70%)',
-                }}
-              />
-
-              {/* Floating feature badges grid */}
-              <div className="relative grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-md fx-fade-up fx-fade-up-d2">
-                {features.map(({ icon: Icon, title, sub }, idx) => (
-                  <div
-                    key={title}
-                    className="rounded-xl p-3 sm:p-4 flex items-start gap-2.5"
-                    style={{
-                      background:
-                        'linear-gradient(180deg, rgba(221,169,46,0.10) 0%, rgba(221,169,46,0.03) 100%), rgba(15,17,21,0.65)',
-                      border: '1px solid rgba(221,169,46,0.32)',
-                      backdropFilter: 'blur(6px)',
-                      boxShadow: '0 18px 40px -22px rgba(221,169,46,0.30)',
-                      animation: `fxFloat ${6 + (idx % 2)}s ease-in-out infinite${idx % 2 ? ' reverse' : ''}`,
-                    }}
-                  >
-                    <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                      style={{
-                        background: 'rgba(221,169,46,0.18)',
-                        border: '1px solid rgba(221,169,46,0.40)',
-                      }}
-                    >
-                      <Icon size={16} style={{ color: 'var(--fx-gold-light)' }} />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-[12px] sm:text-[13px] font-bold text-white leading-tight">
-                        {title}
-                      </div>
-                      <div
-                        className="text-[10px] sm:text-[11px] leading-tight mt-1"
-                        style={{ color: 'var(--fx-text-3)' }}
-                      >
-                        {sub}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Central shield */}
-              <div
-                aria-hidden
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden lg:flex w-24 h-24 rounded-2xl items-center justify-center"
-                style={{
-                  background:
-                    'linear-gradient(135deg, var(--fx-gold-light), var(--fx-gold))',
-                  boxShadow:
-                    '0 0 0 8px rgba(221,169,46,0.10), 0 30px 60px -20px rgba(221,169,46,0.55)',
-                  animation: 'fxFloat 6s ease-in-out infinite',
-                }}
-              >
-                <ShieldCheck size={42} style={{ color: '#1a1408' }} />
-              </div>
             </div>
           </div>
         </div>

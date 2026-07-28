@@ -41,46 +41,46 @@ export default function IbHow() {
           <ScrollReveal variant="fadeUp">
             <div className="fx-tile p-6 sm:p-7 md:p-8 max-w-3xl mx-auto">
               <span className="fx-accent-bar mb-4" />
-              <div className="relative">
-                {/* vertical gradient rail running through the numbered nodes */}
-                <span
-                  aria-hidden
-                  className="absolute left-[23px] top-[24px] bottom-[24px] w-[3px] rounded-full"
-                  style={{
-                    background:
-                      'linear-gradient(180deg, var(--fx-gold-light) 0%, var(--fx-gold) 52%, var(--fx-gold-dark) 100%)',
-                    boxShadow: '0 0 16px rgba(221,169,46,0.4)',
-                  }}
-                />
-                <ul className="relative space-y-6 md:space-y-7">
-                  {steps.map((s, i) => {
-                    const Icon = s.icon
-                    return (
-                      <li key={s.title} className="relative flex items-start gap-5">
-                        {s.highlight ? (
-                          <div
-                            className="shrink-0 flex items-center justify-center rounded-full text-base font-extrabold"
+              <div className="relative space-y-6 md:space-y-7">
+                {steps.map((s, i) => {
+                  const Icon = s.icon
+                  return (
+                    <ScrollReveal key={s.title} variant="fadeUp" delay={i * 0.12}>
+                      <div className="group relative flex items-start gap-5">
+                        {/* connector to the next node only — sits behind the opaque
+                            nodes so the line never crosses a number */}
+                        {i < steps.length - 1 && (
+                          <span
+                            aria-hidden
+                            className="absolute left-[22px] top-[44px] -bottom-6 md:-bottom-7 w-px -translate-x-1/2 z-0"
                             style={{
-                              width: 48,
-                              height: 48,
                               background:
-                                'linear-gradient(180deg, var(--fx-gold-light) 0%, var(--fx-gold) 52%, var(--fx-gold-dark) 100%)',
-                              color: '#1c1608',
-                              border: '1px solid rgba(255,255,255,0.3)',
-                              boxShadow:
-                                '0 0 0 5px rgba(221,169,46,0.14), 0 14px 30px -10px rgba(221,169,46,0.6)',
+                                'linear-gradient(180deg, rgba(221,169,46,0.55), rgba(221,169,46,0.14))',
                             }}
-                          >
-                            {i + 1}
-                          </div>
-                        ) : (
-                          <div className="fx-icon-badge shrink-0" style={{ width: 48, height: 48 }}>
-                            <span className="text-base font-bold" style={{ color: 'var(--fx-gold-light)' }}>
-                              {i + 1}
-                            </span>
-                          </div>
+                          />
                         )}
-                        <div className="pt-0.5">
+
+                        <span
+                          className="relative z-[1] shrink-0 flex items-center justify-center rounded-full text-sm font-bold transition-transform duration-300 group-hover:scale-105"
+                          style={{
+                            width: 44,
+                            height: 44,
+                            background: s.highlight
+                              ? 'linear-gradient(180deg, var(--fx-gold-light) 0%, var(--fx-gold) 100%)'
+                              : 'var(--fx-bg-elev-2)',
+                            color: s.highlight ? '#1c1608' : 'var(--fx-gold-light)',
+                            border: s.highlight
+                              ? '1px solid rgba(247,216,115,0.5)'
+                              : '1px solid rgba(221,169,46,0.3)',
+                            boxShadow: s.highlight
+                              ? '0 0 0 5px rgba(221,169,46,0.14), 0 12px 26px -8px rgba(221,169,46,0.6)'
+                              : '0 8px 18px -8px rgba(0,0,0,0.85)',
+                          }}
+                        >
+                          {i + 1}
+                        </span>
+
+                        <div className="pt-1.5">
                           <div className="flex items-center gap-2 mb-1">
                             <Icon size={16} style={{ color: 'var(--fx-gold-light)' }} />
                             <h3 className="text-base md:text-lg font-bold text-white leading-snug">
@@ -91,10 +91,10 @@ export default function IbHow() {
                             {s.desc}
                           </p>
                         </div>
-                      </li>
-                    )
-                  })}
-                </ul>
+                      </div>
+                    </ScrollReveal>
+                  )
+                })}
               </div>
             </div>
           </ScrollReveal>

@@ -116,7 +116,11 @@ function HubCard() {
           boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10), 0 12px 26px -12px rgba(0,0,0,0.55)',
         }}
       >
-        <span className="text-xl font-extrabold" style={{ color: 'var(--fx-gold-light)' }}>FX</span>
+        <img
+          src="/images/fxartha_icon.png"
+          alt="FX Artha"
+          className="w-9 h-9 object-contain"
+        />
       </div>
       <div className="relative z-[1] text-[11px] uppercase tracking-[0.22em] mb-1" style={{ color: 'rgba(28,22,8,0.78)' }}>
         Core Hub

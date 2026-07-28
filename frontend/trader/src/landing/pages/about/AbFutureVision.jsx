@@ -60,8 +60,12 @@ export default function AbFutureVision() {
           </ScrollReveal>
 
           <ScrollReveal variant="fadeUp" delay={0.1}>
-            <div className="fx-tile-media h-full min-h-[280px]">
-              <span className="fx-tile-media-label">Image</span>
+            <div className="fx-tile h-full min-h-[280px] overflow-hidden">
+              <img
+                src="/images/contact_page_banner.png"
+                alt="Building beyond traditional trading"
+                className="h-full w-full object-cover"
+              />
             </div>
           </ScrollReveal>
         </div>
