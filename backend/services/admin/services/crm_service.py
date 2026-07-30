@@ -242,6 +242,12 @@ async def list_leads(
                EXISTS (SELECT 1 FROM referrals r WHERE r.referred_id = u.id AND r.referrer_id IS NOT NULL) AS has_referrer,
                EXISTS (SELECT 1 FROM trading_accounts ta WHERE ta.user_id = u.id AND ta.is_demo = false) AS has_account,
                (SELECT count(*) FROM trading_accounts ta WHERE ta.user_id = u.id AND ta.is_demo = false) AS sub_accounts,
+               (EXISTS (SELECT 1 FROM deposits d WHERE d.user_id = u.id AND d.status IN ('approved','auto_approved'))
+                OR EXISTS (SELECT 1 FROM transactions t WHERE t.user_id = u.id AND t.type = 'deposit' AND t.reference_id IS NULL)) AS has_deposited,
+               EXISTS (SELECT 1 FROM trade_history th JOIN trading_accounts ta ON ta.id = th.account_id
+                       WHERE ta.user_id = u.id AND ta.is_demo = false)
+                OR EXISTS (SELECT 1 FROM positions p JOIN trading_accounts ta ON ta.id = p.account_id
+                       WHERE ta.user_id = u.id AND ta.is_demo = false) AS has_traded,
                ibp.referral_code AS referral_code,
                (ibp.id IS NOT NULL) AS is_ib,
                COALESCE(ibp.total_earned, 0) AS ib_commission_total,
@@ -280,6 +286,9 @@ async def list_leads(
             status=r["status"], kyc_status=r["kyc_status"],
             created_at=r["created_at"], has_account=bool(r["has_account"]),
             sub_accounts=int(r["sub_accounts"] or 0),
+            has_deposited=bool(r["has_deposited"]), has_traded=bool(r["has_traded"]),
+            stage=("active_trader" if r["has_traded"] else "funded" if r["has_deposited"]
+                   else "account_created" if r["has_account"] else "registered"),
             is_ib=bool(r["is_ib"]),
             referral_code=r["referral_code"],
             followers_count=int(r["followers_count"] or 0),

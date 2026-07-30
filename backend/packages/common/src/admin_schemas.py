@@ -1107,6 +1107,13 @@ class CrmLeadRow(BaseModel):
     created_at: Optional[datetime] = None
     has_account: bool = False
     sub_accounts: int = 0                 # number of live (non-demo) trading accounts
+    # ── Onboarding funnel (for a CRM "Status" view) ──
+    #   registered → account_created → funded → active_trader
+    # kyc_status above is the parallel KYC track. has_deposited/has_traded are
+    # the raw flags so the CRM can render a custom stepper.
+    stage: str = "registered"
+    has_deposited: bool = False
+    has_traded: bool = False
     # ── IB detail (item 3) ──
     is_ib: bool = False
     referral_code: Optional[str] = None
